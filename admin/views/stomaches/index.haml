@@ -1,0 +1,29 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first.active=link_to pat(:list), url(:stomaches, :index)
+      %li=link_to pat(:new), url(:stomaches, :new)
+  .content
+    %h2.title
+      =pat(:all)
+      =mt(:stomaches)
+    .inner
+      %table.table
+        %tr
+          %th.first=mat(:stomach, :created_at)
+          %th=mat(:stomach, :updated_at)
+          %th=mat(:stomach, :condition)
+          %th.last="&nbsp;"
+        -@stomaches.each do |stomach|
+          %tr
+            %td.first=stomach.created_at
+            %td=stomach.updated_at
+            %td=stomach.condition
+            %td.last
+              =button_to pat(:edit), url(:stomaches, :edit, :id => stomach.id), :method => :get, :class => :button_to
+              ="|"
+              =button_to pat(:delete), url(:stomaches, :destroy, :id => stomach.id), :method => :delete, :class => :button_to
+      .actions-bar.wat-cf
+        .actions="&nbsp;"
+
+-content_for :sidebar, partial("base/sidebar")

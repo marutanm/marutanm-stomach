@@ -23,3 +23,4 @@
 
 # Mounts the core application for this project
 Padrino.mount("MarutanmStomach").to('/')
+Padrino.mount("Admin").to("/admin")

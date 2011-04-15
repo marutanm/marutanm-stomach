@@ -1,0 +1,15 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first=link_to pat(:list), url(:stomaches, :index)
+      %li=link_to pat(:new), url(:stomaches, :new)
+      %li.active=link_to pat(:edit), url(:stomaches, :edit, :id => @stomach.id)
+  .content
+    %h2.title
+      =pat(:edit)
+      =mt(:stomach)
+    .inner
+      -form_for :stomach, url(:stomaches, :update, :id => @stomach.id), :method => :put, :class => :form do |f|
+        =partial "stomaches/form", :locals => { :f => f }
+
+-content_for :sidebar, partial("base/sidebar")

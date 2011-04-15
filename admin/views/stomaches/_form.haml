@@ -1,0 +1,10 @@
+.group
+  =f.label :condition
+  =f.error_message_on :condition
+  =f.text_field :condition, :class => :text_field
+  %span.description Ex: a simple text
+
+
+.group.navform.wat-cf
+  =f.submit pat(:save), :class => :button
+  =f.submit pat(:cancel), :onclick => "window.location='#{url(:stomaches, :index)}';return false", :class => :button
