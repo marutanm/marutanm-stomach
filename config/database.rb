@@ -9,7 +9,16 @@ database_name = case Padrino.env
   when :test        then 'marutanm_stomach_test'
 end
 
-Mongoid.database = Mongo::Connection.new(host, port).db(database_name)
+#Mongoid.database = Mongo::Connection.new(host, port).db(database_name)
+Mongoid.configure do |config|
+  if ENV['MONGOHQ_URL']
+    uri = URI.parse(ENV['MONGOHQ_URL'])
+    conn = Mongo::Connection.from_uri(ENV['MONGOHQ_URL'])
+    config.master = conn.db(uri.path.gsub(/^\//, ''))
+  else
+    config.master = Mongo::Connection.new(host, port).db(database_name)
+  end
+end
 
 # You can also configure Mongoid this way
 # Mongoid.configure do |config|
